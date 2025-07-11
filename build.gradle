@@ -59,13 +59,21 @@ processResources {
     }
 }
 
+def generateChangelog = {
+    def proc = ['git', 'log', '--pretty=format:- %s', '--no-merges', '-n', '10'].execute()
+    proc.waitFor()
+    def output = proc.in.text.trim()
+    return output ?: "No recent changes."
+}
+
 modrinth {
     token = project.findProperty("MODRINTH_TOKEN") as String
+    syncBodyFrom = rootProject.file("README.md").text
     projectId = "p3ejhmzp"
     versionNumber = project.version as String
     versionType = "release"
     uploadFile = tasks.jar
     gameVersions = ["1.20.6", "1.21"]
     loaders = ["paper"]
-    debugMode = true
+    changelog = "🔄 Changes:\n${generateChangelog()}"
 }
