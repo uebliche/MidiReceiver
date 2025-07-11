@@ -1,8 +1,7 @@
 <!-- modrinth_exclude.start -->
-
 ![BANNER.png](banner.png)
 [![License: Non-Commercial MIT](https://img.shields.io/badge/license-NC--MIT-blue.svg?style=for-the-badge)](LICENSE.md)
-
+[![Modrinth Downloads](https://img.shields.io/modrinth/dt/midireceiver?style=for-the-badge&logo=modrinth&labelColor=16181c&color=168b48)](https://modrinth.com/plugin/midireceiver)
 <!-- modrinth_exclude.end -->
 
 # 🎼 MIDIReceiver (Spigot Plugin)
