@@ -1,0 +1,7 @@
+name: MidiReceiver
+version: '1.0-SNAPSHOT'
+main: net.uebliche.midiReceiver.MidiReceiver
+api-version: '1.21'
+website: https://modrinth.com/project/midireceiver
+author: Freddi
+description: The MIDIReceiver plugin plays Minecraft note block sounds based on real-time MIDI data sent from the client.

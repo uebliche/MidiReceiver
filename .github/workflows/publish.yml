@@ -1,0 +1,28 @@
+name: Build & Publish to Modrinth
+
+on:
+  push:
+    tags:
+      - "v*"  # Trigger bei Tags wie v1.0.0
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Make Gradle Wrapper executable
+        run: chmod +x ./gradlew
+
+      - name: Build and Publish
+        env:
+          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+        run: ./gradlew modrinth
