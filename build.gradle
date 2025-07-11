@@ -67,7 +67,7 @@ def generateChangelog = {
 }
 
 modrinth {
-    token = project.findProperty("MODRINTH_TOKEN") as String
+    token = System.getenv("MODRINTH_TOKEN")
     syncBodyFrom = rootProject.file("README.md").text
     projectId = "p3ejhmzp"
     versionNumber = project.version as String
