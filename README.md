@@ -1,6 +1,6 @@
 <!-- modrinth_exclude.start -->
 
-![BANNER.png](BANNER.png)
+![BANNER.png](banner.png)
 [![License: Non-Commercial MIT](https://img.shields.io/badge/license-NC--MIT-blue.svg?style=for-the-badge)](LICENSE.md)
 
 <!-- modrinth_exclude.end -->
