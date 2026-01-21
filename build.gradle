@@ -1,7 +1,6 @@
 plugins {
     id 'java'
     id("xyz.jpenilla.run-paper") version "2.3.1"
-    id("com.modrinth.minotaur") version "2.+"
 }
 
 group = 'net.uebliche'
@@ -64,16 +63,4 @@ def generateChangelog = {
     proc.waitFor()
     def output = proc.in.text.trim()
     return output ?: "No recent changes."
-}
-
-modrinth {
-    token = System.getenv("MODRINTH_TOKEN")
-    syncBodyFrom = rootProject.file("README.md").text
-    projectId = "p3ejhmzp"
-    versionNumber = project.version as String
-    versionType = "release"
-    uploadFile = tasks.jar
-    gameVersions = ["1.20.6", "1.21"]
-    loaders = ["paper"]
-    changelog = "🔄 Changes:\n${generateChangelog()}"
 }
