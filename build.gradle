@@ -1,10 +1,56 @@
+buildscript {
+    if (gradle.ext.has("mcmetaPluginAvailable") && gradle.ext.mcmetaPluginAvailable) {
+        repositories {
+            mavenCentral()
+        }
+        def mcmetaVersion = (project.findProperty("mcmetaPluginVersion")
+                ?: System.getenv("MCMETA_PLUGIN_VERSION")
+                ?: "0.1.0").toString()
+        dependencies {
+            classpath "net.uebliche:mcmeta-gradle:${mcmetaVersion}"
+        }
+    }
+}
+
 plugins {
     id 'java'
     id("xyz.jpenilla.run-paper") version "2.3.1"
 }
 
+def resolveMinecraftVersion = { Project target ->
+    def candidates = [
+            target.findProperty("mcVersion"),
+            target.findProperty("minecraft_version"),
+            target.rootProject.findProperty("mcVersion"),
+            target.rootProject.findProperty("minecraft_version")
+    ]
+    candidates.find { it }?.toString()
+}
+
+def mcmetaAvailable = gradle.ext.has("mcmetaPluginAvailable") && gradle.ext.mcmetaPluginAvailable
+if (mcmetaAvailable) {
+    try {
+        apply plugin: 'net.uebliche.mcmeta'
+        def requestedMcVersion = resolveMinecraftVersion(project)
+        mcmeta {
+            autoLoad = false
+            if (requestedMcVersion) {
+                minecraftVersion = requestedMcVersion
+            }
+            repositories {
+                all()
+            }
+        }
+        if (requestedMcVersion) {
+            mcmeta.resolveNow(project)
+        }
+    } catch (Exception ex) {
+        logger.lifecycle("mcmeta plugin unavailable: ${ex.message}")
+    }
+}
+
 group = 'net.uebliche'
-version = '1.0.0'
+version = project.findProperty("tag")?.toString()?.trim() ?: '1.0.0'
 
 repositories {
     mavenCentral()
