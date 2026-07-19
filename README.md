@@ -43,4 +43,4 @@ If `command == 144` and `velocity > 0`, the plugin maps `data1` (MIDI note) to M
 
 ---
 
-Need help or want to contribute? Check out the [repository](https://github.com/uebliche/midireciever) or open an issue!
+Need help or want to contribute? Reach out directly!
