@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: [self-hosted, Linux, X64, studio, wsl]
+    runs-on: [self-hosted, Linux, X64, luna, java]
 
     steps:
       - name: Checkout repository

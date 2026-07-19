@@ -9,7 +9,7 @@ on:
 
 jobs:
   update-description:
-    runs-on: [self-hosted, Linux, X64, studio, wsl]
+    runs-on: [self-hosted, Linux, X64, luna, java]
     steps:
       - uses: actions/checkout@v7
       - name: Set up Java
